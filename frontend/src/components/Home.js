@@ -1,7 +1,6 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-
-
 
 import lib from '../img/lib.jpg'
 
@@ -36,9 +35,10 @@ const Input = styled.input`
 `
 
 const Button = styled.button`
-    background: grey;
+    background: #7F4806;
     border: black;
     border-radius: 3px;
+    box-shadow:2px 2px 5px grey;
     width: 25%;
     padding :0.3em ;
     margin: 2em auto;
@@ -55,18 +55,19 @@ const H1 = styled.h1`
 `
 
 const Home = () => {
+    const navigate = useNavigate()
     
     return (
         
             
         <Div>
-            <row style={{width:'98%'}}>
-            <H1>Biblio<span style={{color: 'brown'}}>Theca</span></H1>
+            <row style={{width:'98.3%'}}>
+            <H1>Biblio<span style={{color: '#7F4806'}}>Theca</span></H1>
             <P style={{margin:'4em auto'}}> 
             <form>
             <p><Input type="text" name="uid" placeholder="E-MAIL" /></p>
             <p><Input type="text" name="pass" placeholder="PASSWORD" /></p>
-            <Button>LOGIN</Button>
+            <Button onClick={() => navigate('/dash')} className='button'>LOGIN</Button>
             </form>
             <p><a  href="#">Forgot Password</a></p>
             <a href="#">Create Account</a>
