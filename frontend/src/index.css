@@ -21,3 +21,8 @@ code {
   width: 26%;
   height: 3vh;
 }
+
+.imgbutton:hover {
+  width: 14%;
+}
+

@@ -32,9 +32,9 @@ const Dash = () => {
     const navigate = useNavigate()
     return(
         <div>
-            <H1 onClick={() => navigate('/dashex')} className='lib'>Library Management</H1>
+            <H1 onClick={() => navigate('/dashex')}>Library Management</H1>
             <div style={{background:'#DEE1E5', height:'90.5vh'}}>
-            <div>
+            
                 <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
                     <img src={book} alt=''/>
                 </ImgButton>
@@ -50,9 +50,10 @@ const Dash = () => {
                 <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
                     <img src={mag} alt=''/>
                 </ImgButton>
+                <p>hello there this is dashboard extended</p>
             </div>
             
-            </div>
+            
         </div>
     )
 }
