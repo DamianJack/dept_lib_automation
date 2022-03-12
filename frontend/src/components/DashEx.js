@@ -23,18 +23,31 @@ const ImgButton = styled.button`
     border: none;
     border-radius: '50%';
     width: 13%;
-    margin: 5em 8em;
+    margin: 1em 4em;
+    display: inline-block;
+`
+
+const Div = styled.div`
+    margin:0;
+    background-color: #fdfdfd5c;
+    width:24em;
+    height:90vh;
     display: inline-block;
 `
 
 
-const Dash = () => {
+const DashEx = () => {
     const navigate = useNavigate()
     return(
         <div>
-            <H1 onClick={() => navigate('/dashex')}>Library Management</H1>
+             
+             <H1 onClick={() => navigate('/dashex')} style = {{cursor: 'pointer'}}>Library Management</H1>
+             
             <div style={{background:'#DEE1E5', height:'90.5vh'}}>
-            
+
+            <Div>
+
+            </Div>
                 <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
                     <img src={book} alt=''/>
                 </ImgButton>
@@ -50,7 +63,7 @@ const Dash = () => {
                 <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
                     <img src={mag} alt=''/>
                 </ImgButton>
-                <p>hello there this is dashboard extended</p>
+            
             </div>
             
             
@@ -58,4 +71,4 @@ const Dash = () => {
     )
 }
 
-export default Dash
+export default DashEx

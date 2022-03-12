@@ -9,6 +9,7 @@ import news from '../img/newspaper.png'
 
 
 
+
 const H1 = styled.h1`
     background-color: #FBA313;
     padding: 0.5em;
@@ -28,11 +29,13 @@ const ImgButton = styled.button`
 `
 
 
+
 const Dash = () => {
     const navigate = useNavigate()
     return(
         <div>
-            <H1 onClick={() => navigate('/dashex')} className='lib'>Library Management</H1>
+            
+            <H1 onClick={() => navigate('/dashex')} style = {{cursor: 'pointer'}}>Library Management</H1>
             <div style={{background:'#DEE1E5', height:'90.5vh'}}>
             <div>
                 <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
