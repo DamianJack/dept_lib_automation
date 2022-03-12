@@ -1,5 +1,10 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { SidebarData } from './SidebarData';
+import { IconContext } from 'react-icons';
 import styled from 'styled-components'
 
 import book from '../img/books.png'
@@ -7,18 +12,9 @@ import mem from '../img/members.png'
 import mag from '../img/magazine.png'
 import news from '../img/newspaper.png'
 
+import './Dash.css';
 
 
-
-const H1 = styled.h1`
-    background-color: #FBA313;
-    padding: 0.5em;
-    margin: 0 ;
-    width: 98.3%;
-    height: 6vh;
-    display: flex;
-    align-items: center;
-`
 const ImgButton = styled.button`
     background: none;
     border: none;
@@ -30,34 +26,62 @@ const ImgButton = styled.button`
 
 
 
-const Dash = () => {
+function Dash() {
     const navigate = useNavigate()
-    return(
-        <div>
+    const [sidebar, setSidebar] = useState(false);
+  
+    const showSidebar = () => setSidebar(!sidebar);
+  
+    return (
+      <>
+        <IconContext.Provider value={{ color: '#fff' }}>
+          <div className='navbar'>
+            <Link to='#' className='menu-bars'>
+              <FaIcons.FaBars onClick={showSidebar} />
+            </Link>
             
-            <H1 onClick={() => navigate('/dashex')} style = {{cursor: 'pointer'}}>Library Management</H1>
-            <div style={{background:'#DEE1E5', height:'90.5vh'}}>
-            <div>
-                <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
-                    <img src={book} alt=''/>
-                </ImgButton>
-                
-                <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
-                    <img src={mem} alt=''/>
-                </ImgButton>
-
-                <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
-                    <img src={news} alt=''/>
-                </ImgButton>
-
-                <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
-                    <img src={mag} alt=''/>
-                </ImgButton>
-            </div>
-            
-            </div>
-        </div>
-    )
-}
-
-export default Dash
+          </div>
+          <div>
+                  <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
+                      <img src={book} alt=''/>
+                  </ImgButton>
+                  
+                  <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
+                      <img src={mem} alt=''/>
+                  </ImgButton>
+  
+                  <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
+                      <img src={news} alt=''/>
+                  </ImgButton>
+  
+                  <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
+                      <img src={mag} alt=''/>
+                  </ImgButton>
+              </div>
+              <div>
+          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className='nav-menu-items' onClick={showSidebar}>
+              <li className='navbar-toggle'>
+                <Link to='#' className='menu-bars'>
+                  <AiIcons.AiOutlineClose />
+                </Link>
+              </li>
+              {SidebarData.map((item, index) => {
+                return (
+                  <li key={index} className={item.cName}>
+                    <Link to={item.path}>
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+          </div>
+        </IconContext.Provider>
+      </>
+    );
+  }
+  
+  export default Dash;
