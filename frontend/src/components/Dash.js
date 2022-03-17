@@ -42,7 +42,7 @@ function Dash() {
             
           </div>
           <div>
-                  <ImgButton onClick={() => navigate('/home')} className='imgbutton'>
+                  <ImgButton onClick={() => navigate('/exp')} className='imgbutton'>
                       <img src={book} alt=''/>
                   </ImgButton>
                   

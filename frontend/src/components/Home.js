@@ -1,6 +1,7 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
+import Axios from 'axios'
 
 import lib from '../img/lib.jpg'
 
@@ -54,23 +55,83 @@ const H1 = styled.h1`
     align-items: center;
 `
 
-const Home = () => {
+
+const Home = (props) => {
+    
     const navigate = useNavigate()
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    // const register = () => {
+    //     Axios.post("http://localhost:3001/register",{
+    //         username:unameReg,
+    //         password:passReg
+    //     }).then((response) => {
+    //         console.log(response);
+    //     });
+    // };
+        
+        
+    const login = () => {
+        Axios.post("http://localhost:3001/login",{
+            username:username,
+            password:password
+        }).then((response) => {
+            console.log(response);
+        });
+    };
     
     return (
+       
+            
+        //     return (
+                
+                    
+        //         <Div>
+                    
+        //             <row style={{width:'98.3%'}}>
+        //             <H1>Biblio<span style={{color: '#7F4806'}}>Theca</span></H1>
+        //             <P style={{margin:'4em auto'}}> 
+        //             <form >
+        //             <p><Input type="text" name="uid" placeholder="E-MAIL" 
+        //                         onChange={(e) => {
+        //                             setUnameReg(e.target.value);
+        //                         }}/></p>
+        //             <p><Input type="text" name="pass" placeholder="PASSWORD" 
+        //                         onChange={(e) => {
+        //                             setPassReg(e.target.value);
+        //                         }}/></p>
+        //             <Button type="submit" onClick={register} className='button'>Register</Button>
+        //             </form>
+                    
+        //             </P>
+        //             </row>
+                    
+        //         </Div>
+                
+        //     )
+        // }
+        
         
             
         <Div>
+            
             <row style={{width:'98.3%'}}>
             <H1>Biblio<span style={{color: '#7F4806'}}>Theca</span></H1>
             <P style={{margin:'4em auto'}}> 
-            <form>
-            <p><Input type="text" name="uid" placeholder="E-MAIL" /></p>
-            <p><Input type="text" name="pass" placeholder="PASSWORD" /></p>
-            <Button onClick={() => navigate('/dash')} className='button'>LOGIN</Button>
+            <form >
+            <p><Input type="text" name="uid" placeholder="E-MAIL" 
+            onChange={(e) => {
+                setUsername(e.target.value);
+            }}/></p>
+            <p><Input type="text" name="pass" placeholder="PASSWORD" 
+            onChange={(e) => {
+                setPassword(e.target.value);
+            }}/></p>
+            <Button type="submit" onClick={login} className='button'>LOGIN</Button>
             </form>
             <p><a  href="#">Forgot Password</a></p>
-            <a href="#">Create Account</a>
+            <a href="/create">Create Account</a>
             </P>
             </row>
             
