@@ -35,6 +35,7 @@ app.post('/register', (req, res) => {
       [username, password],
       (err, result) => {
         console.log(err);
+     
       }
         );
         res.json({username:username,password:password})
@@ -53,7 +54,14 @@ app.post('/register', (req, res) => {
       (err, result) => {
         if(err)
         {
-        res.send({err : err});
+          if(err)
+          {
+            res
+              .status(401)
+              .json({
+                error: 'Wrong credentials',
+              })
+          }
         }
         
         if(result.length>0) 
@@ -78,3 +86,4 @@ app.use(middleware.unknownEndPoint)
 app.use(middleware.errorHandler)
 
 module.exports = app
+  
