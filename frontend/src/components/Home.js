@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 import Axios from 'axios'
 
@@ -45,6 +45,7 @@ const Button = styled.button`
     margin: 2em auto;
     text-align:center;
 `
+
 const H1 = styled.h1`
     background-color: #fdfdfd5c;
     padding: 0.5em;
@@ -62,15 +63,6 @@ const Home = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    // const register = () => {
-    //     Axios.post("http://localhost:3001/register",{
-    //         username:unameReg,
-    //         password:passReg
-    //     }).then((response) => {
-    //         console.log(response);
-    //     });
-    // };
-        
         
     const login = () => {
         Axios.post("http://localhost:3001/login",{
@@ -78,40 +70,14 @@ const Home = (props) => {
             password:password
         }).then((response) => {
             console.log(response);
+            if(!response.error) {
+                    navigate('/dash')
+            }
         });
     };
     
     return (
        
-            
-        //     return (
-                
-                    
-        //         <Div>
-                    
-        //             <row style={{width:'98.3%'}}>
-        //             <H1>Biblio<span style={{color: '#7F4806'}}>Theca</span></H1>
-        //             <P style={{margin:'4em auto'}}> 
-        //             <form >
-        //             <p><Input type="text" name="uid" placeholder="E-MAIL" 
-        //                         onChange={(e) => {
-        //                             setUnameReg(e.target.value);
-        //                         }}/></p>
-        //             <p><Input type="text" name="pass" placeholder="PASSWORD" 
-        //                         onChange={(e) => {
-        //                             setPassReg(e.target.value);
-        //                         }}/></p>
-        //             <Button type="submit" onClick={register} className='button'>Register</Button>
-        //             </form>
-                    
-        //             </P>
-        //             </row>
-                    
-        //         </Div>
-                
-        //     )
-        // }
-        
         
             
         <Div>
@@ -130,8 +96,8 @@ const Home = (props) => {
             }}/></p>
             <Button type="submit" onClick={login} className='button'>LOGIN</Button>
             </form>
-            <p><a  href="#">Forgot Password</a></p>
-            <a href="/create">Create Account</a>
+            <p><NavLink to='' style={{textDecoration: 'none', color:'whitesmoke'}}>Forgot Password</NavLink></p>
+            <NavLink to="/create" style={{textDecoration: 'none', color:'whitesmoke'}}>Create Account</NavLink>
             </P>
             </row>
             

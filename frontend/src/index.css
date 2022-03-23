@@ -19,7 +19,7 @@ code {
 
 .button:hover {
   width: 26%;
-  height: 3vh;
+  cursor: pointer;
 }
 
 .imgbutton:hover {
