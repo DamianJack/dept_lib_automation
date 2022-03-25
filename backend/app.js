@@ -3,7 +3,6 @@ const cors = require('cors')
 require('express-async-errors')
 const middleware = require('./utils/middleware')
 const mysql = require("mysql")
-//const dataRouter = require('./routes/data.route')
 
 const app = express()
 
@@ -21,8 +20,27 @@ const db = mysql.createConnection({
 });
 
 
+app.post('/registeruser', (req, res) => {
 
-app.post('/register', (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  db.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+   
+    db.query(
+    "INSERT INTO users (username, password) VALUES (?,?)",
+    [username, password],
+    (err) => {
+      console.log(err)
+
+    }
+      );
+      res.json({username:username,password:password})
+});
+});
+
+app.post('/registeradmin', (req, res) => {
 
     const username = req.body.username;
     const password = req.body.password;
@@ -31,7 +49,7 @@ app.post('/register', (req, res) => {
       console.log("Connected!");
      
       db.query(
-      "INSERT INTO users (username, password) VALUES (?,?)",
+      "INSERT INTO admin (username, password) VALUES (?,?)",
       [username, password],
       (err, result) => {
         console.log(err);
@@ -43,7 +61,7 @@ app.post('/register', (req, res) => {
   });
 
 
-  app.post('/login', (req, res) => {
+  app.post('/loginuser', (req, res) => {
  
     const username = req.body.username;
     const password = req.body.password;
@@ -71,7 +89,7 @@ app.post('/register', (req, res) => {
         }
         else
         {
-          res.json({message: "Wrong Combination"})
+          res.json({error: "Wrong Credentials"})
           console.log("wrong credentials");
         }
         
@@ -79,6 +97,46 @@ app.post('/register', (req, res) => {
         }
     );
   }); 
+
+
+
+  app.post('/loginadmin', (req, res) => {
+ 
+    const username = req.body.username;
+    const password = req.body.password;
+  
+    db.query(
+      "SELECT * FROM admin WHERE username = ? AND password = ?",
+      [username, password],
+      (err, result) => {
+        if(err)
+        {
+          if(err)
+          {
+            res
+              .status(401)
+              .json({
+                error: 'Wrong credentials',
+              })
+          }
+        }
+        
+        if(result.length>0) 
+        {
+            res.json({message: "success"})
+            console.log("correct credentials");
+        }
+        else
+        {
+          res.json({error: "Wrong Credentials"})
+          console.log("wrong credentials");
+        }
+        
+        
+        }
+    );
+  }); 
+
 
 
   

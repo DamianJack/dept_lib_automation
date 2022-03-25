@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 
 import student from '../img/students.png'
-import faculty from '../img/faculty.png'
+import faculty from '../img/facultys.png'
 import back from '../img/back.jpg.crdownload'
 
 const Div = styled.div`
@@ -14,7 +14,6 @@ const Div = styled.div`
     height: 100vh;
   `
 
-
 const LogHome = () => {
 
     const navigate = useNavigate()
@@ -23,12 +22,12 @@ const LogHome = () => {
 
     <Div>
         <div style={{width:'50%' ,margin: '8em'}}>
-            <button onClick={ () => navigate('/student')} style={{background:'none',border:'none',cursor:'pointer'}}>
+            <button onClick={ () => navigate('/user')} style={{background:'none',border:'none',cursor:'pointer'}}>
                 <img src={student} alt=''/>
             </button>
         </div>
         <div style={{width:'50%' ,margin: '8em'}}>
-            <button onClick={ () => navigate('/faculty')}  style={{background:'none',border:'none',cursor:'pointer'}}>
+            <button onClick={ () => navigate('/admin')}  style={{background:'none',border:'none',cursor:'pointer'}}>
                 <img src={faculty} alt=''/>
             </button>
         </div>
